@@ -38,7 +38,7 @@ public class ArticleController {
         Article saved = articleRepository.save(article);
         log.info(saved.toString());
 
-        return "";
+        return "redirect:/articles/" + saved.getId();
     }
 
     @GetMapping("/articles/{id}") //해당 url요청을 처리 선언
@@ -57,6 +57,8 @@ public class ArticleController {
     @GetMapping("/articles")
     public String index(Model model){
         // 1. 모든 article을 가져옴
+        //List<Article> articleEntityList = (List<Article>) articleRepository.findAll();
+        //Iterable<Article> articleEntityList = articleRepository.findAll();
         List<Article> articleEntityList = articleRepository.findAll();
 
         // 2. 가져온 article의 묶음을 뷰로 전달

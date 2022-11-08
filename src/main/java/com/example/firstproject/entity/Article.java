@@ -2,10 +2,7 @@ package com.example.firstproject.entity;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @AllArgsConstructor
@@ -16,7 +13,7 @@ import javax.persistence.Id;
 public class Article {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // 기본 키 생성을 DB에 일임
     private Long id;
 
     @Column

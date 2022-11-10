@@ -42,7 +42,7 @@ public class ArticleApiController {
     @PatchMapping("/api/articles/{id}")
     public ResponseEntity<Article> update(@PathVariable Long id,
                                           @RequestBody ArticleForm dto) {
-        Article updated = articleService.update(id,dto);
+        Article updated = articleService.update(id, dto);
         return (updated != null) ?
                 ResponseEntity.status(HttpStatus.OK).body(updated) :
                 ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
@@ -55,4 +55,15 @@ public class ArticleApiController {
                 ResponseEntity.status(HttpStatus.OK).body(deleted) :
                 ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
+
+    // 트랜잭션 -> 예외 발생 -> 롤백
+    @PostMapping("/api/transaction-test")
+    // Article 을 List 단위로 전송, 이를 RequestBody 로 묶어서 받음
+    public ResponseEntity<List<Article>> transactionTest(@RequestBody List<ArticleForm> dtos) {
+        List<Article> createList = articleService.createArticle(dtos);
+        return (createList != null) ?
+                ResponseEntity.status(HttpStatus.OK).body(createList) :
+                ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
+
 }

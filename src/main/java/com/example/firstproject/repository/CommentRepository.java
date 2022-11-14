@@ -15,6 +15,6 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
     //articleId를 찾지 못해 오류 발생시 Param 어노테이션으로 파라미터 정보 추가
 
     // 특정 닉네임의 모든 댓글 조회
-    List<Comment> findByNickName(String nickname);
+    List<Comment> findByNickname(String nickname);
 
 }

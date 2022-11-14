@@ -40,12 +40,13 @@ class ArticleServiceTest {
     void show_성공____존재하는_id_입력() {
         //예상
         Long id = 1L;
-        Article expected = new Article(id, "갘갘갘","111");
+        Article expected = new Article(id, "갘갘갘", "111");
         //실제
-        Article article =articleService.show(id);
+        Article article = articleService.show(id);
         //비교
         assertEquals(expected.toString(), article.toString());
     }
+
     @Test
     void show_실패____존재하지_않는_id_입력() {
         //예상
@@ -53,7 +54,7 @@ class ArticleServiceTest {
         Article expected = null;
 
         //실제
-        Article article =articleService.show(id);
+        Article article = articleService.show(id);
         //비교
         assertEquals(expected, article);
     }
@@ -69,7 +70,7 @@ class ArticleServiceTest {
         Article expected = new Article(4L, title, content);
 
         //실제
-        Article article =articleService.create(dto);
+        Article article = articleService.create(dto);
         //비교
         assertEquals(expected.toString(), article.toString());
     }
@@ -84,7 +85,7 @@ class ArticleServiceTest {
         Article expected = null;
 
         //실제
-        Article article =articleService.create(dto);
+        Article article = articleService.create(dto);
         //비교
         assertEquals(expected, article);
     }

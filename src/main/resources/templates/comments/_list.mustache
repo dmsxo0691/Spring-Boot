@@ -1,7 +1,7 @@
 <div id="comments-list">
     <!-- commentDtos의 내용을 반복(#)-->
     <!-- view에서 데이터를 사용하기 위해 모델에 데이터를 등록(컨트롤러) -->
-    {{#commentDtos}}
+    {{#commentsDtos}}
         <div class="card m-2" id="comments-{{id}}">
             <div class="card-header">
                 {{nickname}}
@@ -10,5 +10,5 @@
                 {{body}}
             </div>
         </div>
-    {{/commentDtos}}
+    {{/commentsDtos}}
 </div>

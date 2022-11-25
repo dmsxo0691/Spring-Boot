@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+${...} 변수 표현식 <br/>
+<span th:text="${fruit.fruit1}"></span><br/>
+<span th:text="${fruit.fruit2}"></span><br/>
+<span th:text="${fruit.fruit3}"></span><br/>
+
+${...} 선택변수 표현식 <br/>
+<div th:object="${fruit}">
+    <span th:text="*{fruit1}"></span><br/>
+    <span th:text="*{fruit2}"></span><br/>
+    <span th:text="*{fruit3}"></span><br/><br/>
+</div>
+
+#{...} 메세지 표현식 <br/>
+<span th:text="#{FRUIT.FRUIT4}"></span><br/><br/>
+
+@{...} 링크 URL 표현식 <br/>
+<a th:href="@{http://www.naver.com}">naver</a><br/><br/>
+
+~{...} fragment 표현식<br/>
+<div th:insert="~{common/footer :: samplefooter}"></div>
+<!-- ~{...} 다른곳에서 정의 해 놓은 내용을 가지고 올때 -->
+
+<!--    위의 예를 통해 fragment를 조금 더 살펴보면 실제 common/footer.html 파일이 있고
+이 안에는 samplefooter 라는 fragment가 존재한다. 이 fragment를 가지고 와서 fruit.html
+안에 넣어주는 것이라고 생각하면 된다.-->
+
+</body>
+</html>

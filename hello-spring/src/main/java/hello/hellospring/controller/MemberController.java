@@ -20,6 +20,7 @@ public class MemberController {
     @Autowired
     public MemberController(MemberService memberService) {
         this.memberService = memberService;
+        System.out.println("memberService = " + memberService.getClass());
     }
     //new로 생성하지 않기 때문에,,, 새로운 객체가 아님
     //모든 컨트롤러에서 사용하는 서비스 객체를 같게하기 위해서 스프링 컨테이너에 서비스 객체를 등록

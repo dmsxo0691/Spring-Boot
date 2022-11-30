@@ -20,32 +20,35 @@ public class MemberService {
     public MemberService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
+
     //회원가입
-    public Long join(Member member){
-   //같은 이름이 있는 중복회원 X
-  // Optional<Member> result = memberRepository.findByName(member.getName());
-   //result.ifPresent(m -> {
-      // throw new IllegalStateException("이미존재하는 회원입니다.");
-    validateDuplicateMember(member);//중복회원 검증
-    memberRepository.save(member);
-     return member.getId();
+    public Long join(Member member) {
+
+        validateDuplicateMember(member);//중복회원 검증
+        memberRepository.save(member);
+        return member.getId();
+
     }
+
     //같은 이름이 있는 중복회원 X
     private void validateDuplicateMember(Member member) {
         memberRepository.findByName(member.getName())
-            .ifPresent(m -> {
-                //혹시나 null 값이 있으며 Optional 로 감싸서 반환
-                throw new IllegalStateException("이미 존재하는 회원입니다.");
-       });
+                .ifPresent(m -> {
+                    //혹시나 null 값이 있으며 Optional 로 감싸서 반환
+                    throw new IllegalStateException("이미 존재하는 회원입니다.");
+                });
     }
 
     //전체회원 조회
     public List<Member> findMembers() {
-        return  memberRepository.findAll();
+        long start = System.currentTimeMillis();
+        return memberRepository.findAll();
+
     }
+
     //회원조회
-    public Optional<Member> findOne(Long memberId){
-        return  memberRepository.findById(memberId);
+    public Optional<Member> findOne(Long memberId) {
+        return memberRepository.findById(memberId);
     }
 
 

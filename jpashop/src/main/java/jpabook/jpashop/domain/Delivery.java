@@ -23,3 +23,6 @@ public class Delivery {
     @Enumerated(EnumType.STRING)
     private DeliveryStatus status; // READY, COMP
 }
+
+// 영속성 컨텍스트
+// 연관관계 메서드 조사

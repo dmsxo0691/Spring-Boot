@@ -28,7 +28,7 @@ public class Category {
     private List<Item> items;
 
     // 카테고리는 스스로 양방향관계를 형성한다.
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_id")
     private Category parent;
 

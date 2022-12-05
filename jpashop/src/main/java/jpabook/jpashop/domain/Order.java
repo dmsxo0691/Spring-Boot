@@ -49,4 +49,37 @@ public class Order {
         this.delivery = delivery;
         delivery.setOrder(this);
     }
+
+    // 복잡한 생성은 생성 메서드를 만들어서 사용
+    // 생성 메서드
+    public static Order createOrder(Member member, Delivery delivery, OrderItem... orderItems) {
+        Order order = new Order();
+        order.setMember(member);
+        order.setDelivery(delivery);
+        for (OrderItem orderItem : orderItems) {
+            order.addOrderItem(orderItem);
+        }
+        order.setStatus(OrderStatus.ORDER);
+        order.setOrderDate(LocalDateTime.now());
+
+        return order;
+    }
+
+    //비즈니스 로직
+    public void cancel() {
+        if (delivery.getStatus() == DeliveryStatus.COMP)
+            throw new IllegalArgumentException("이미 배송된 상품은 취소가 불가합니다.");
+        this.setStatus(OrderStatus.CANCEL);
+        for (OrderItem orderItem : orderItems) // 루프돌면서 재고를 원상복구
+            orderItem.cancel(); // 주문이 2개 이상이면 각각의 cancel 을 해줘야 함
+    }
+
+    //조회 로직
+    public int getTotalPrice() {
+        int totalPrice = 0;
+        for (OrderItem orderItem : orderItems)
+            totalPrice += orderItem.getTotalPrice();
+
+        return totalPrice;
+    }
 }

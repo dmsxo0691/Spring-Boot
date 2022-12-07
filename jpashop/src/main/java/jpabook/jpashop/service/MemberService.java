@@ -17,8 +17,6 @@ public class MemberService {
     @Autowired
     private final MemberRepository memberRepository;
 
-
-
     @Transactional
     //회원가입
     public Long join(Member member){
